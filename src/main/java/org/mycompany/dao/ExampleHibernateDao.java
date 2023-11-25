@@ -63,8 +63,8 @@ public class ExampleHibernateDao {
         employees.setEmpNoSalariesSet(Set.of(salaries));
         employees.setEmpNoTitlesSet(Set.of(titles));
 
-        employees.setDepartments(departments);
-        departments.setEmployees(employees);
+        employees.setDepartments(Set.of(departments));
+        departments.setEmployees(Set.of(employees));
 
         employeesRepository.save(employees);
         departmentsRepository.save(departments);
