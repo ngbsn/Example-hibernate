@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.mycompany</groupId>
-    <artifactId>sample-hibernate</artifactId>
+    <artifactId>example-hibernate</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
