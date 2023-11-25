@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.util.Set;
 
 @Repository
-public class SampleHibernateDao {
+public class ExampleHibernateDao {
 
     @Autowired
     EmployeesRepository employeesRepository;
