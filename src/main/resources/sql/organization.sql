@@ -18,14 +18,14 @@ CREATE TABLE organization.employees (
 );
 
 CREATE TABLE organization.departments (
-    dept_no     CHAR(4)         NOT NULL,
+    dept_no     VARCHAR(4)         NOT NULL,
     dept_name   VARCHAR(40)     NOT NULL,
     PRIMARY KEY (dept_no),
     UNIQUE   	(dept_name)
 );
 
 CREATE TABLE organization.dept_manager (
-   dept_no      CHAR(4)         NOT NULL,
+   dept_no      VARCHAR(4)         NOT NULL,
    emp_no       INT             NOT NULL,
    FOREIGN KEY (emp_no)  REFERENCES organization.employees (emp_no)    ON DELETE CASCADE,
    FOREIGN KEY (dept_no) REFERENCES organization.departments (dept_no) ON DELETE CASCADE,
@@ -36,7 +36,7 @@ CREATE INDEX dept_manager_dept_no_idx ON organization.dept_manager(dept_no);
 
 CREATE TABLE organization.dept_emp (
     emp_no      INT             NOT NULL,
-    dept_no     CHAR(4)         NOT NULL,
+    dept_no     VARCHAR(4)         NOT NULL,
     from_date   DATE            NOT NULL,
     to_date     DATE            NOT NULL,
     FOREIGN KEY (emp_no)  REFERENCES organization.employees   (emp_no)  ON DELETE CASCADE,
