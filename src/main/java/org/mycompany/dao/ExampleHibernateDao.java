@@ -1,36 +1,49 @@
 package org.mycompany.dao;
 
-import org.mycompany.dao.repository.DepartmentsRepository;
-import org.mycompany.dao.repository.EmployeesRepository;
+import org.mycompany.dao.repository.*;
 import org.mycompany.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
 import java.util.Set;
+import java.util.UUID;
+
+import static org.mycompany.utils.Util.generateRandom;
 
 @Repository
 public class ExampleHibernateDao {
 
     @Autowired
     EmployeesRepository employeesRepository;
-
     @Autowired
     DepartmentsRepository departmentsRepository;
+    @Autowired
+    DeptEmpRepository deptEmpRepository;
+    @Autowired
+    SalariesRepository salariesRepository;
+    @Autowired
+    TitlesRepository titlesRepository;
+
+    @Autowired
+    ContractorsRepository contractorsRepository;
 
     public void save(){
+        String deptNo = UUID.randomUUID().toString();
         Departments departments = Departments.builder()
-                .deptNo("100")
-                .deptName("CS")
+                .deptNo(deptNo)
+                .deptName("CS-" + UUID.randomUUID())
                 .build();
+        departmentsRepository.save(departments);
+
         Employees employees = Employees.builder()
-                .empNo(1)
                 .grade(Employees.GradeEnum.E3)
                 .birthDate(new Date(System.currentTimeMillis()))
                 .hireDate(new Date(System.currentTimeMillis()))
                 .lastName("Srinivasa")
                 .firstName("Nagabhushan")
                 .build();
+        employeesRepository.save(employees);
 
         DeptEmp deptEmp = DeptEmp.builder()
                 .deptNoDepartments(departments)
@@ -38,6 +51,9 @@ public class ExampleHibernateDao {
                 .fromDate(new Date(System.currentTimeMillis()))
                 .toDate(new Date(System.currentTimeMillis()))
                 .build();
+        employees.setEmpNoDeptEmpSet(Set.of(deptEmp));
+        departments.setDeptNoDeptEmpSet(Set.of(deptEmp));
+        deptEmpRepository.save(deptEmp);
 
         Salaries salaries = Salaries.builder()
                 .salary(100000)
@@ -47,6 +63,8 @@ public class ExampleHibernateDao {
                 .toDate(new Date(System.currentTimeMillis()))
                 .empNoEmployees(employees)
                 .build();
+        employees.setEmpNoSalariesSet(Set.of(salaries));
+        salariesRepository.save(salaries);
 
         Titles titles = Titles.builder()
                 .titlesPK(Titles.TitlesPK.builder()
@@ -56,26 +74,20 @@ public class ExampleHibernateDao {
                 .toDate(new Date(System.currentTimeMillis()))
                 .empNoEmployees(employees)
                 .build();
-
-        employees.setEmpNoDeptEmpSet(Set.of(deptEmp));
-        departments.setDeptNoDeptEmpSet(Set.of(deptEmp));
-
-        employees.setEmpNoSalariesSet(Set.of(salaries));
         employees.setEmpNoTitlesSet(Set.of(titles));
+        titlesRepository.save(titles);
 
         employees.setDepartments(Set.of(departments));
         departments.setEmployees(Set.of(employees));
 
-        employeesRepository.save(employees);
-        departmentsRepository.save(departments);
-
+        int contractorNo = generateRandom(1,Integer.MAX_VALUE);
         Contractors contractors = Contractors.builder()
                 .birthDate(new Date(System.currentTimeMillis()))
-                .lastName("Srinivasa")
+                .lastName("S")
                 .hireDate(new Date(System.currentTimeMillis()))
                 .contractorsPK(Contractors.ContractorsPK.builder()
-                        .contractorNo(1)
-                        .firstName("Nagabhushan")
+                        .contractorNo(contractorNo)
+                        .firstName("N")
                         .build())
                 .build();
 
@@ -83,7 +95,7 @@ public class ExampleHibernateDao {
                 .contractorsSalariesPK(ContractorsSalaries.ContractorsSalariesPK.builder()
                         .salary(100000)
                         .contractorNofirstName(ContractorsSalaries.ContractorNofirstName.builder()
-                                .contractorNo(1)
+                                .contractorNo(contractorNo)
                                 .firstName("Nagabhushan")
                                 .build())
                         .build())
@@ -91,6 +103,7 @@ public class ExampleHibernateDao {
                 .build();
 
         contractors.setContractorNofirstNameContractorsSalariesSet(Set.of(contractorsSalaries));
+        contractorsRepository.save(contractors);
 
     }
 }

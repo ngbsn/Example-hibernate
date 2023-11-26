@@ -1,3 +1,4 @@
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mycompany.ExampleHibernateApplication;
@@ -6,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes = ExampleHibernateApplication.class)
+@Slf4j
 class ExampleHibernateTest {
 
     @Autowired
@@ -16,6 +18,7 @@ class ExampleHibernateTest {
         try{
             exampleHibernateService.save();
         }catch (Exception e){
+            log.error("Test Failed", e);
             Assertions.fail();
         }
     }

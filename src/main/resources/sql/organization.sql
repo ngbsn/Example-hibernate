@@ -8,7 +8,7 @@ CREATE TABLE organization.contractors (
 );
 
 CREATE TABLE organization.employees (
-    emp_no      INT             NOT NULL,
+    emp_no      INT             NOT NULL  AUTO_INCREMENT,
     birth_date  DATE            NOT NULL,
     first_name  VARCHAR(14)     NOT NULL,
     last_name   VARCHAR(16)     NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE organization.employees (
 );
 
 CREATE TABLE organization.departments (
-    dept_no     VARCHAR(4)         NOT NULL,
+    dept_no     VARCHAR(4)         NOT NULL AUTO_INCREMENT,
     dept_name   VARCHAR(40)     NOT NULL,
     PRIMARY KEY (dept_no),
     UNIQUE   	(dept_name)
