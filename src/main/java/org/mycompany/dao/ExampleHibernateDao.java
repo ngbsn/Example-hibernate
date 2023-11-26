@@ -24,9 +24,10 @@ public class ExampleHibernateDao {
     SalariesRepository salariesRepository;
     @Autowired
     TitlesRepository titlesRepository;
-
     @Autowired
     ContractorsRepository contractorsRepository;
+    @Autowired
+    ContractorsSalariesRepository contractorsSalariesRepository;
 
     public void save(){
         String deptNo = UUID.randomUUID().toString();
@@ -34,7 +35,7 @@ public class ExampleHibernateDao {
                 .deptNo(deptNo)
                 .deptName("CS-" + UUID.randomUUID())
                 .build();
-        departmentsRepository.save(departments);
+        departments = departmentsRepository.save(departments);
 
         Employees employees = Employees.builder()
                 .grade(Employees.GradeEnum.E3)
@@ -43,11 +44,15 @@ public class ExampleHibernateDao {
                 .lastName("Srinivasa")
                 .firstName("Nagabhushan")
                 .build();
-        employeesRepository.save(employees);
+        employees = employeesRepository.save(employees);
 
         DeptEmp deptEmp = DeptEmp.builder()
-                .deptNoDepartments(departments)
+                .deptEmpPK(DeptEmp.DeptEmpPK.builder()
+                        .empNo(employees.getEmpNo())
+                        .deptNo(departments.getDeptNo())
+                        .build())
                 .empNoEmployees(employees)
+                .deptNoDepartments(departments)
                 .fromDate(new Date(System.currentTimeMillis()))
                 .toDate(new Date(System.currentTimeMillis()))
                 .build();
@@ -79,6 +84,7 @@ public class ExampleHibernateDao {
 
         employees.setDepartments(Set.of(departments));
         departments.setEmployees(Set.of(employees));
+        employeesRepository.save(employees);
 
         int contractorNo = generateRandom(1,Integer.MAX_VALUE);
         Contractors contractors = Contractors.builder()
@@ -90,20 +96,20 @@ public class ExampleHibernateDao {
                         .firstName("N")
                         .build())
                 .build();
+        contractors = contractorsRepository.save(contractors);
 
         ContractorsSalaries contractorsSalaries = ContractorsSalaries.builder()
                 .contractorsSalariesPK(ContractorsSalaries.ContractorsSalariesPK.builder()
                         .salary(100000)
                         .contractorNofirstName(ContractorsSalaries.ContractorNofirstName.builder()
                                 .contractorNo(contractorNo)
-                                .firstName("Nagabhushan")
+                                .firstName("N")
                                 .build())
                         .build())
                 .contractorNofirstNameContractors(contractors)
                 .build();
 
         contractors.setContractorNofirstNameContractorsSalariesSet(Set.of(contractorsSalaries));
-        contractorsRepository.save(contractors);
-
+        contractorsSalariesRepository.save(contractorsSalaries);
     }
 }
