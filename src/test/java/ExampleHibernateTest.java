@@ -14,9 +14,9 @@ class ExampleHibernateTest {
     ExampleHibernateService exampleHibernateService;
 
     @Test
-    void testSave(){
+    void testSaveMySQL(){
         try{
-            exampleHibernateService.save();
+            exampleHibernateService.saveMySQL();
         }catch (Exception e){
             log.error("Test Failed", e);
             Assertions.fail();

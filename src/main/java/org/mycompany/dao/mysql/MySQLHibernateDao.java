@@ -1,7 +1,8 @@
-package org.mycompany.dao;
+package org.mycompany.dao.mysql;
 
-import org.mycompany.dao.repository.*;
-import org.mycompany.models.*;
+import org.mycompany.dao.mysql.repository.*;
+import org.mycompany.models.mysql.*;
+import org.mycompany.models.mysql.Departments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,7 @@ import java.util.UUID;
 import static org.mycompany.utils.Util.generateRandom;
 
 @Repository
-public class ExampleHibernateDao {
+public class MySQLHibernateDao {
 
     @Autowired
     EmployeesRepository employeesRepository;

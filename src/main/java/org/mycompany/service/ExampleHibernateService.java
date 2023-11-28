@@ -1,6 +1,6 @@
 package org.mycompany.service;
 
-import org.mycompany.dao.ExampleHibernateDao;
+import org.mycompany.dao.mysql.MySQLHibernateDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 public class ExampleHibernateService {
 
     @Autowired
-    ExampleHibernateDao exampleHibernateDao;
+    MySQLHibernateDao mySQLHibernateDao;
 
-    public void save(){
-        exampleHibernateDao.save();
+    public void saveMySQL(){
+        mySQLHibernateDao.save();
     }
 }

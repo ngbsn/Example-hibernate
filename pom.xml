@@ -36,14 +36,25 @@
                 <version>1.0.6-SNAPSHOT</version>
                 <executions>
                     <execution>
-                        <id>parse-schema</id>
+                        <id>parse-schema-mysql</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>parse-schema</goal>
                         </goals>
                         <configuration>
-                            <sqlFilePath>${basedir}/src/main/resources/sql/organization.sql</sqlFilePath>
-                            <packageName>org.mycompany.models</packageName>
+                            <sqlFilePath>${basedir}/src/main/resources/sql/mysql.sql</sqlFilePath>
+                            <packageName>org.mycompany.models.mysql</packageName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>parse-schema-postgres</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>parse-schema</goal>
+                        </goals>
+                        <configuration>
+                            <sqlFilePath>${basedir}/src/main/resources/sql/postgres.sql</sqlFilePath>
+                            <packageName>org.mycompany.models.postgres</packageName>
                         </configuration>
                     </execution>
                 </executions>

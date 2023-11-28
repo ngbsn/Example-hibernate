@@ -1,6 +1,6 @@
-package org.mycompany.dao.repository;
+package org.mycompany.dao.mysql.repository;
 
-import org.mycompany.models.Departments;
+import org.mycompany.models.mysql.Departments;
 import org.springframework.data.repository.CrudRepository;
 
 public interface DepartmentsRepository extends CrudRepository<Departments, String> {
