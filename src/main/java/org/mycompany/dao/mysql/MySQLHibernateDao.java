@@ -2,7 +2,6 @@ package org.mycompany.dao.mysql;
 
 import org.mycompany.dao.mysql.repository.*;
 import org.mycompany.models.mysql.*;
-import org.mycompany.models.mysql.Departments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

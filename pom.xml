@@ -53,8 +53,8 @@
                             <goal>parse-schema</goal>
                         </goals>
                         <configuration>
-                            <sqlFilePath>${basedir}/src/main/resources/sql/postgres.sql</sqlFilePath>
-                            <packageName>org.mycompany.models.postgres</packageName>
+                            <sqlFilePath>${basedir}/src/main/resources/sql/postgres1.sql</sqlFilePath>
+                            <packageName>org.mycompany.models.postgres1</packageName>
                         </configuration>
                     </execution>
                 </executions>
@@ -100,6 +100,7 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- MySQL database -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
