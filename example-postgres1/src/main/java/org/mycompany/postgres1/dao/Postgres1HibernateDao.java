@@ -164,6 +164,9 @@ public class Postgres1HibernateDao {
         customer.setCustomerIdInvoiceSet(Set.of(invoice));
 
         InvoiceLine invoiceLine = InvoiceLine.builder()
+                .quantity(100)
+                .unitPrice(new BigDecimal(100))
+                .trackIdTrack(track1)
                 .invoiceIdInvoice(invoice)
                 .build();
         invoiceLineRepository.save(invoiceLine);
