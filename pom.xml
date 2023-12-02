@@ -11,5 +11,6 @@
     <modules>
         <module>example-mysql</module>
         <module>example-postgres1</module>
+        <module>example-postgres2</module>
     </modules>
 </project>

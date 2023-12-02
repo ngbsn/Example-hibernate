@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>org.ngbsn</groupId>
-    <artifactId>example-postgres1</artifactId>
+    <artifactId>example-postgres2</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
